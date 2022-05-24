@@ -6,7 +6,7 @@ import * as S from "../styles/index.styled";
 import Footer from "../src/components/Footer";
 import { FaSearch } from "react-icons/fa";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import { DescriptionData } from "./data/data.js";
+import { DescriptionData } from "./data/index";
 
 export default function Index() {
   const [search, setSearch] = useState("");
