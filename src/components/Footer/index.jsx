@@ -10,7 +10,7 @@ const Footer = () => {
       <Wrapper>
         <S.FooterContainer>
           <S.FooterText>
-            Made with <AiFillHeart /> by{" "}
+            Made with <AiFillHeart color="#CE2029" /> by{" "}
             <S.FooterLink href="https://manpreetbhatti.com/" target="blank">
               Manpreet Bhatti
             </S.FooterLink>
