@@ -16,6 +16,7 @@ const theme = {
     gold: "#F7DF38",
     grey: "#1C1C1C",
     red: "#CE2029",
+    lightgrey: "#8a8a8a",
   },
 };
 
