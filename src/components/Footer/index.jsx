@@ -1,4 +1,4 @@
-import { Wrapper } from "../../../styles";
+import { Wrapper } from "../../../styles/index.styled";
 import * as S from "./Footer.styled";
 import Image from "next/image";
 import Link from "next/link";
