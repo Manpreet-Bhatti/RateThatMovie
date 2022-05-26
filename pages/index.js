@@ -2,6 +2,7 @@ import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import * as S from "../styles/index.styled";
 import Footer from "../src/components/Footer";
 import { FaSearch } from "react-icons/fa";
@@ -9,10 +10,11 @@ import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { DescriptionData } from "../data/index";
 
 export default function Index() {
+  const router = useRouter();
   const [search, setSearch] = useState("");
 
   return (
-    <S.Body>
+    <>
       <Head>
         <title>RateThatMovie</title>
         <meta
@@ -60,7 +62,11 @@ export default function Index() {
               type="text"
               placeholder="Enter movie name..."
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value.toLowerCase())}
+              onKeyDown={(e) =>
+                e.key === "Enter" &&
+                router.push(`/search/${search.replaceAll(" ", "-")}`)
+              }
             />
             <S.SearchButton>
               <FaSearch />
@@ -86,6 +92,6 @@ export default function Index() {
         </S.Disclaimer>
       </S.Wrapper>
       <Footer />
-    </S.Body>
+    </>
   );
 }

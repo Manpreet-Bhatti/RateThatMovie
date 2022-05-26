@@ -1,11 +1,6 @@
 import styled from "styled-components";
 import theme from "./theme";
 
-export const Body = styled.div`
-  background-color: ${theme.colors.grey};
-  color: ${theme.colors.white};
-`;
-
 export const Wrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
@@ -150,6 +145,7 @@ export const Description = styled.p`
 export const Disclaimer = styled.p`
   font-size: ${theme.fontSizes.tiny};
   color: ${theme.colors.lightgrey};
+  font-weight: ${theme.fontWeights.semibold};
   text-align: center;
   margin-bottom: 20px;
   padding: 50px 15px 0 15px;
