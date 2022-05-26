@@ -11,3 +11,10 @@ export const SearchResult = styled.div`
     padding-left: 15px;
   }
 `;
+
+export const MovieListContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  flex-wrap: wrap;
+`;

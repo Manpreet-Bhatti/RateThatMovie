@@ -19,6 +19,7 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 const ListOfMovies = ({ listOfMovies }) => {
+  console.log(listOfMovies);
   const router = useRouter();
   const searchSlug = router.query.searchSlug;
   return (
@@ -27,10 +28,15 @@ const ListOfMovies = ({ listOfMovies }) => {
         <FaChevronRight color="#CE2029" />{" "}
         <p>Movie results for &quot;{searchSlug.replaceAll("-", " ")}&quot;</p>
       </S.SearchResult>
-      <ul>
-        <li>Movie 1</li>
-        <li>Movie 2</li>
-      </ul>
+      <S.MovieListContainer>
+        {listOfMovies.results.map((movie) => {
+          return (
+            <div key={movie.id}>
+              <p>{movie.original_title}</p>
+            </div>
+          );
+        })}
+      </S.MovieListContainer>
     </Wrapper>
   );
 };
