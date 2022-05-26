@@ -64,7 +64,7 @@ export const MovieSearch = styled.input`
   color: ${theme.colors.black};
   width: 100%;
   height: 50px;
-  padding: 6px 100px 6px 20px;
+  padding: 6px 35px 6px 20px;
   border-radius: 5px 0 0 5px;
   border: none;
   font-size: ${theme.fontSizes.body};
