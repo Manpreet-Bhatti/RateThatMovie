@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import * as S from "../../styles/searchSlug.styled";
 import { Wrapper } from "../../styles/index.styled";
 import { FaChevronRight } from "react-icons/fa";
+import { AiFillStar } from "react-icons/ai";
+import Image from "next/image";
 
 export const getServerSideProps = async ({ params }) => {
   const res = await fetch(
@@ -31,9 +33,32 @@ const ListOfMovies = ({ listOfMovies }) => {
       <S.MovieListContainer>
         {listOfMovies.results.map((movie) => {
           return (
-            <div key={movie.id}>
-              <p>{movie.original_title}</p>
-            </div>
+            <S.MovieCard key={movie.id}>
+              <Image
+                src={
+                  movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w185${movie.poster_path}`
+                    : "/images/fallback-poster.svg"
+                }
+                alt="Movie poster"
+                width={"185px"}
+                height={"242px"}
+                layout="intrinsic"
+              />
+              <S.CardContent>
+                <S.CardContentTop>
+                  <S.CardRating>
+                    <AiFillStar color="#F7DF38" />{" "}
+                    {parseFloat((movie.vote_average / 2).toFixed(1))}
+                  </S.CardRating>
+                  {!movie.adult && <p>ADULT</p>}
+                  <div>{movie.release_date.split("-")[0]}</div>
+                </S.CardContentTop>
+                <div>
+                  <p>{movie.original_title}</p>
+                </div>
+              </S.CardContent>
+            </S.MovieCard>
           );
         })}
       </S.MovieListContainer>
