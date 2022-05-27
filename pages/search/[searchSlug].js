@@ -21,7 +21,6 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 const ListOfMovies = ({ listOfMovies }) => {
-  console.log(listOfMovies);
   const router = useRouter();
   const searchSlug = router.query.searchSlug;
   return (
@@ -38,20 +37,27 @@ const ListOfMovies = ({ listOfMovies }) => {
                 src={
                   movie.poster_path
                     ? `https://image.tmdb.org/t/p/w185${movie.poster_path}`
-                    : "/images/fallback-poster.svg"
+                    : "/images/fallback-poster.jpg"
                 }
                 alt="Movie poster"
                 width={"185px"}
                 height={"242px"}
-                layout="intrinsic"
+                style={{
+                  borderTopLeftRadius: "4px",
+                  borderTopRightRadius: "4px",
+                }}
               />
               <S.CardContent>
                 <S.CardContentTop>
                   <S.CardRating>
-                    <AiFillStar color="#F7DF38" />{" "}
-                    {parseFloat((movie.vote_average / 2).toFixed(1))}
+                    {movie.vote_count > 0 && (
+                      <>
+                        <AiFillStar color="#F7DF38" />{" "}
+                        {parseFloat((movie.vote_average / 2).toFixed(1))}
+                      </>
+                    )}
                   </S.CardRating>
-                  {!movie.adult && <p>ADULT</p>}
+                  {movie.adult && <p>ADULT</p>}
                   <div>{movie.release_date.split("-")[0]}</div>
                 </S.CardContentTop>
                 <div>

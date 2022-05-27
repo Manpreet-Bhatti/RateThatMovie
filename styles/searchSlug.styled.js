@@ -24,6 +24,17 @@ export const MovieListContainer = styled.div`
 
 export const MovieCard = styled.div`
   background-color: ${theme.colors.grey};
+  max-width: 185px;
+  border-radius: 4px;
+  top: 0;
+  position: relative;
+  transition: all 0.2s ease-out;
+  &:hover {
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+    top: -4px;
+    cursor: pointer;
+  }
 `;
 
 export const CardContent = styled.div`
