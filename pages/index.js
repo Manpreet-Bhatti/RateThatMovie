@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,10 +8,21 @@ import Footer from "../src/components/Footer";
 import { FaSearch } from "react-icons/fa";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { DescriptionData } from "../data/index";
+import useScrollListener from "../src/hooks/useScrollListener";
 
 export default function Index() {
   const router = useRouter();
   const [search, setSearch] = useState("");
+  const scroll = useScrollListener();
+  const [darken, setDarken] = useState(false);
+
+  useEffect(() => {
+    if (scroll.y > 73) {
+      setDarken(true);
+    } else {
+      setDarken(false);
+    }
+  }, [scroll.y, scroll.lastY]);
 
   return (
     <>
@@ -23,7 +34,7 @@ export default function Index() {
         />
         <link rel="icon" href="/images/logo.svg" />
       </Head>
-      <S.Header>
+      <S.Header darken={darken}>
         <S.Wrapper>
           <S.HeaderContainer>
             <Link passHref href={"/"}>

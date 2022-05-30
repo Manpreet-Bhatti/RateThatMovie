@@ -9,13 +9,15 @@ export const Wrapper = styled.div`
 `;
 
 export const Header = styled.header`
-  background-color: ${theme.colors.black};
+  background-color: ${(props) =>
+    props.darken ? theme.colors.black : theme.colors.darkgrey};
   width: 100%;
   height: 60px;
   position: sticky;
   top: 0;
   margin-bottom: 25px;
   z-index: 1;
+  transition: background-color 0.3s;
 `;
 
 export const HeaderContainer = styled.div`
