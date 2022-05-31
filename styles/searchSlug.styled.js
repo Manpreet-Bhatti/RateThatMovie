@@ -16,6 +16,7 @@ export const SearchResult = styled.div`
 
 export const MovieListContainer = styled.div`
   display: flex;
+  justify-content: center;
   gap: 30px;
   width: 100%;
   flex-wrap: wrap;
@@ -41,6 +42,9 @@ export const CardContent = styled.div`
   display: flex;
   flex-direction: column;
   padding: 10px;
+  & > div:nth-child(2) > p {
+    font-weight: ${theme.fontWeights.semibold};
+  }
 `;
 
 export const CardContentTop = styled.div`

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
 import * as S from "../../styles/searchSlug.styled";
 import { Wrapper } from "../../styles/index.styled";
@@ -6,6 +7,7 @@ import { AiFillStar } from "react-icons/ai";
 import Image from "next/image";
 import Head from "next/head";
 import InternalHeader from "../../src/components/InternalHeader";
+import Pagination from "../../src/components/Pagination";
 
 export const getServerSideProps = async ({ params }) => {
   const res = await fetch(
@@ -25,6 +27,8 @@ export const getServerSideProps = async ({ params }) => {
 const ListOfMovies = ({ listOfMovies }) => {
   const router = useRouter();
   const searchSlug = router.query.searchSlug;
+  const [currPage, setCurrPage] = useState(1);
+
   return (
     <>
       <Head>
@@ -41,6 +45,12 @@ const ListOfMovies = ({ listOfMovies }) => {
           <FaChevronRight color="#CE2029" />{" "}
           <p>Movie results for &quot;{searchSlug.replaceAll("-", " ")}&quot;</p>
         </S.SearchResult>
+        <Pagination
+          currentPage={currPage}
+          totalCount={listOfMovies.total_results}
+          pageSize={20}
+          onPageChange={(page) => setCurrPage(page)}
+        />
         <S.MovieListContainer>
           {listOfMovies.results.map((movie) => {
             return (
