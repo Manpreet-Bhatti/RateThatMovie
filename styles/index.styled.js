@@ -91,7 +91,7 @@ export const SearchButton = styled.button`
   transition-duration: 0.4s;
   &:hover,
   &:active {
-    background-color: #90161d;
+    background-color: #a51a21;
   }
 `;
 
