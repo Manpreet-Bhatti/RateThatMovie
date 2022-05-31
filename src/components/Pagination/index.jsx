@@ -1,6 +1,7 @@
 import { usePagination, ELLIPSES } from "../../hooks/usePagination";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
+import * as S from "./Pagination.styled";
 
 const Pagination = ({
   onPageChange,
@@ -27,27 +28,31 @@ const Pagination = ({
   let lastPage = paginationRange[paginationRange.length - 1];
 
   return (
-    <div>
+    <S.PaginationContainer>
       {currentPage !== 1 && (
-        <div onClick={onPrevious}>
-          <MdNavigateBefore />
-        </div>
+        <S.PaginationNav onClick={onPrevious}>
+          <MdNavigateBefore size={"30px"} />
+        </S.PaginationNav>
       )}
       {paginationRange.map((page) => {
-        if (page === ELLIPSES) return <BiDotsHorizontalRounded />;
+        if (page === ELLIPSES) return <BiDotsHorizontalRounded key={page} />;
 
         return (
-          <div key={page} onClick={() => onPageChange(page)}>
+          <S.Pagination
+            key={page}
+            onClick={() => onPageChange(page)}
+            selected={currentPage === page}
+          >
             {page}
-          </div>
+          </S.Pagination>
         );
       })}
       {currentPage !== lastPage && (
-        <div onClick={onNext}>
-          <MdNavigateNext />
-        </div>
+        <S.PaginationNav onClick={onNext}>
+          <MdNavigateNext size={"30px"} />
+        </S.PaginationNav>
       )}
-    </div>
+    </S.PaginationContainer>
   );
 };
 
