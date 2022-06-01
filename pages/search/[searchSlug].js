@@ -12,7 +12,7 @@ import Pagination from "../../src/components/Pagination";
 export const getServerSideProps = async ({ params }) => {
   const res = await fetch(
     `https://api.themoviedb.org/4/search/movie?api_key=${
-      process.env.api_key
+      process.env.REACT_APP_API_KEY
     }&query=${params.searchSlug.replaceAll("-", " ")}`
   );
   const listOfMovies = await res.json();
@@ -80,7 +80,9 @@ const ListOfMovies = ({ listOfMovies }) => {
                       )}
                     </S.CardRating>
                     {movie.adult && <p>ADULT</p>}
-                    <div>{movie.release_date.split("-")[0]}</div>
+                    <div>
+                      {movie.release_date && movie.release_date.split("-")[0]}
+                    </div>
                   </S.CardContentTop>
                   <div>
                     <p>{movie.original_title}</p>
