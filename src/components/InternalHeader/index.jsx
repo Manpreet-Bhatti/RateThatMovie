@@ -48,6 +48,10 @@ const InternalHeader = () => {
               placeholder="Enter movie name..."
               value={search}
               onChange={(e) => setSearch(e.target.value.toLowerCase())}
+              onKeyDown={(e) =>
+                e.key === "Enter" &&
+                router.push(`/search/${search.replaceAll(" ", "-")}`)
+              }
             />
           </S.SearchContainer>
         </S.HeaderContainer>
