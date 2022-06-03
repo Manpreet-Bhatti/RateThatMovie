@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import * as S from "../../styles/searchSlug.styled";
 import { Wrapper } from "../../styles/index.styled";
@@ -8,12 +8,20 @@ import Image from "next/image";
 import Head from "next/head";
 import InternalHeader from "../../src/components/InternalHeader";
 import Pagination from "../../src/components/Pagination";
+import { config } from "../../config";
 
-export const getServerSideProps = async ({ params }) => {
+export const getServerSideProps = async ({ params, query }) => {
+  console.log(query);
   const res = await fetch(
-    `https://api.themoviedb.org/4/search/movie?api_key=${
-      process.env.REACT_APP_API_KEY
-    }&query=${params.searchSlug.replaceAll("-", " ")}`
+    `https://api.themoviedb.org/4/search/movie?query=${params.searchSlug.replaceAll(
+      "-",
+      " "
+    )}${query.page ? `&page=${query.page}` : ""}`,
+    {
+      headers: {
+        Authorization: `Bearer ${config.apiKey}`,
+      },
+    }
   );
   const listOfMovies = await res.json();
 
@@ -28,6 +36,17 @@ const ListOfMovies = ({ listOfMovies }) => {
   const router = useRouter();
   const searchSlug = router.query.searchSlug;
   const [currPage, setCurrPage] = useState(1);
+
+  useEffect(() => {
+    router.replace({
+      query: { ...router.query, page: currPage },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currPage]);
+
+  useEffect(() => {
+    setCurrPage(1);
+  }, [searchSlug]);
 
   return (
     <>
