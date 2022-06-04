@@ -25,7 +25,7 @@ export const usePagination = ({
       totalPageCount
     );
     const shouldShowLeftDots = leftSiblingIndex > 2;
-    const shouldShowRightDots = rightSiblingIndex < totalPageCount - 2;
+    const shouldShowRightDots = rightSiblingIndex <= totalPageCount - 2;
     const firstPageIndex = 1;
     const lastPageIndex = totalPageCount;
 

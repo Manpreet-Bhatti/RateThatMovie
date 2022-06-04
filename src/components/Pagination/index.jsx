@@ -34,12 +34,12 @@ const Pagination = ({
           <MdNavigateBefore size={"30px"} />
         </S.PaginationNav>
       )}
-      {paginationRange.map((page) => {
-        if (page === ELLIPSES) return <BiDotsHorizontalRounded key={page} />;
+      {paginationRange.map((page, index) => {
+        if (page === ELLIPSES) return <BiDotsHorizontalRounded key={index} />;
 
         return (
           <S.Pagination
-            key={page}
+            key={index}
             onClick={() => onPageChange(page)}
             selected={currentPage === page}
           >
