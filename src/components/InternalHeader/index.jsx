@@ -50,6 +50,7 @@ const InternalHeader = () => {
               onChange={(e) => setSearch(e.target.value.toLowerCase())}
               onKeyDown={(e) =>
                 e.key === "Enter" &&
+                search &&
                 router.push(`/search/${search.replaceAll(" ", "-")}`)
               }
             />
