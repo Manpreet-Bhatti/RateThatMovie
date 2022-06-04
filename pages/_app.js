@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import NProgress from "nprogress";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import "../styles/globals.css";
 import "../styles/nprogress.css";
@@ -10,7 +9,6 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const handleStart = (url) => {
-      console.log(`Loading: ${url}`);
       NProgress.start();
     };
     const handleStop = () => {
@@ -28,17 +26,7 @@ function MyApp({ Component, pageProps }) {
     };
   }, [router]);
 
-  return (
-    <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css"
-        />
-      </Head>
-      <Component {...pageProps} />
-    </>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;
